@@ -1,0 +1,35 @@
+<nz-layout class="content">
+  <div class="df jcc jcsb aic head">
+    <div class="df jcc aic lt title-text logo">
+      <!-- <img /> -->
+      <span>Admin</span>
+    </div>
+    <div class="df jcc aic rt">
+      <div class="l" *ngIf="!isLogin$">
+        <button (click)="onLogin()" nz-button [routerLink]="['/u/login']">
+          登录
+        </button>
+      </div>
+      <div class="l" *ngIf="isLogin$">
+        <button (click)="onLogout()" nz-button [routerLink]="['/u/logout']">
+          退出登录
+        </button>
+      </div>
+      <div class="c">
+        <button (click)="onEnrrol()" nz-button [routerLink]="['/u/enrrol']">
+          注册
+        </button>
+      </div>
+      <div class="r">
+        <nz-dropdown>
+          <button nz-button nz-dropdown>CN</button>
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item><a class="location-item">en</a></li>
+            <li nz-menu-item><a class="location-item">zh</a></li>
+            <li nz-menu-item><a class="location-item">de</a></li>
+          </ul>
+        </nz-dropdown>
+      </div>
+    </div>
+  </div>
+</nz-layout>

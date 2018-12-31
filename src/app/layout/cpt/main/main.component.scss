@@ -1,0 +1,26 @@
+$topHeight: 64px;
+$sideWidth: 240px;
+.main {
+  height: 100%;
+  width: 100%;
+
+  .head {
+    height: 64px;
+    width: 100%;
+  }
+
+  .body {
+    height: calc(100% - #{$topHeight});
+
+    .left {
+      max-width: 240px;
+      height: 100%;
+    }
+
+    .right {
+      width: calc(100% - #{$sideWidth});
+      height: 100%;
+      flex-grow: 1;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<nz-layout class="content">
+  <ul
+    nz-menu
+    [nzMode]="'inline'"
+    style="width: 240px;"
+    *ngFor="let menu of menuList$; let index = i"
+  >
+    <li nz-submenu *ngIf="menu.nextMenu.length > 0">
+      <span title>{{ menu.menuName }}</span>
+      <ul *ngFor="let cMenu of menu.nextMenu; let cIndex = i">
+        <li *ngIf="cMenu.nextMenu.length > 0">
+          <span title>{{ cMenu.menuName }}</span>
+          <ul *ngFor="let gMenu of cMenu.nextMenu; let gIndex = i">
+            <li nz-menu-item router-link="gMenu.path">{{ gMenu.menuName }}</li>
+          </ul>
+        </li>
+        <li
+          nz-menu-item
+          *ngIf="cMenu.nextMenu.length === 0"
+          router-link="cMenu.path"
+        >
+          {{ cMenu.menuName }}
+        </li>
+      </ul>
+    </li>
+    <li nz-menu-item *ngIf="menu.nextMenu.length === 0" router-link="menu.path">
+      {{ menu.menuName }}
+    </li>
+  </ul>
+</nz-layout>
