@@ -6,9 +6,26 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./side.component.scss"]
 })
 export class SideComponent implements OnInit {
+  sub$ = {};
+
   menuList$: Array<any> = [];
 
   constructor() {}
 
-  ngOnInit() {}
+  getMenuList() {
+    return [
+      {
+        menuName: "表格",
+        path: "",
+        children: [
+          { menuName: "普通表格", path: "table/commonTable", children: [] },
+          { menuName: "固定列表格", path: "table/fixColumnTable", children: [] }
+        ]
+      }
+    ];
+  }
+
+  ngOnInit() {
+    this.getMenuList();
+  }
 }

@@ -4,25 +4,19 @@ import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
-  HttpParams
+  HttpParams,
+  HttpResponse
 } from "@angular/common/http";
 import { catchError, tap, map, take } from "rxjs/operators";
 
 import { ILoginRequest, ILoginResponse } from "../user/store/models/user";
-import {
-  IGetPayMethodListRequest,
-  IGetPayTypeListRequest,
-  IAddPayMethodRequest,
-  IUpdatePayMethodRequest,
-  IDeletePayMethodRequest,
-  IGetPayMethodByIdRequest,
-  ISortPayMethodRequest
-} from "../user/store/models/pay-method";
 
 const httpOptions: any = {
   headers: new HttpHeaders({ "Content-Type": "application/json" })
 };
-const baseUrl = "http://10.0.0.212:8080/";
+
+// const baseUrl = "http://10.0.0.212:8080/";
+const baseUrl = "http://192.168.1.7:3000/";
 
 @Injectable({
   providedIn: "root"
@@ -46,9 +40,22 @@ export class UserService {
   }
 
   login(req: ILoginRequest): Observable<any> {
-    const url = `${baseUrl}/backend/adminLogin`;
-    return this._http
-      .post(url, req, httpOptions)
-      .pipe(catchError(this.handleError));
+    console.log(req, 9999);
+    // const url = `${baseUrl}/backend/login`;
+    const url = `http://192.168.1.7:3000/users/login`;
+
+    return this._http.post(url, req, httpOptions).pipe(
+      tap(
+        // Log the result or error
+        data => console.log("哈哈哈哈哈"),
+        error => console.log(error)
+      ),
+      catchError(this.handleError)
+    );
+  }
+
+  findUser(uid: number): Observable<any> {
+    const url = `${baseUrl}/backend/findUser/${uid}`;
+    return this._http.get(url);
   }
 }

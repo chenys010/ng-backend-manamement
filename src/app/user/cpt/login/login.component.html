@@ -47,8 +47,8 @@
         <button
           nz-button
           class="login-form-button"
-          [nzType]="'primary'"
-          disabled="validateForm.invalid"
+          nzType="primary"
+          [disabled]="!validateForm.valid"
         >
           登录
         </button>
@@ -61,10 +61,4 @@
     ><i nz-icon *ngIf="hide" type="lock"></i
     ><i nz-icon *ngIf="!hide" type="lock"></i
   ></ng-template>
-  <!-- <ng-template *ngIf="hide" #prefixLock
-    ><i nz-icon type="lock" (click)="hide = !hide"></i
-  ></ng-template> -->
-  <!-- <ng-template *ngIf="!hide" #prefixLock
-    ><i nz-icon type="unLock" (click)="hide = !hide"></i
-  ></ng-template> -->
 </div>
